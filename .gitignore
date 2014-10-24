@@ -1,0 +1,5 @@
+/.pants.d/
+/.pants.run
+/dist/
+
+*.pyc
