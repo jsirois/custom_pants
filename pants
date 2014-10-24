@@ -19,10 +19,12 @@ function tempdir {
   mktemp -d -p "$1" pants.XXXXXX 
 }
 
+# TODO(John Sirois): GC race loser tmp dirs leftover from bootstrap_XXX
+# functions.  Any tmp dir w/o a symlink pointing to it can go.
+
 function bootstrap_venv {
   if [[ ! -d "${PANTS_BOOTSTRAP}/${VENV_PACKAGE}" ]]
   then
-    # TODO(John Sirois): GC race loser tmp dirs
     (
       mkdir -p "${PANTS_BOOTSTRAP}" && \
       staging_dir=$(tempdir "${PANTS_BOOTSTRAP}") && \
